@@ -39,3 +39,7 @@ tasks.withType<JavaCompile>().configureEach {
     options.forkOptions.jvmArgs = javacExports
     options.compilerArgs.addAll(javacExports)
 }
+
+tasks.withType<Javadoc> {
+    isFailOnError = false
+}

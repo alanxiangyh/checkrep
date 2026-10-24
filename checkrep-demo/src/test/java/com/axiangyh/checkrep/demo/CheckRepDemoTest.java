@@ -12,6 +12,7 @@ class CheckRepDemoTest {
     void checkRepClassIsCheckedInTestState() {
         TestStateRecord record = new TestStateRecord();
         record.setValue(1);
+        assertThrows(IllegalStateException.class, () -> record.setValue(-1));
 
         try {
             Field f = record.getClass().getDeclaredField("value");

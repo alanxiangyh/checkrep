@@ -6,4 +6,3 @@ pluginManagement {
 }
 
 rootProject.name = "checkrep"
-if (!providers.gradleProperty("publishPluginOnly").isPresent) include("demo")

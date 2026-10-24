@@ -2,8 +2,9 @@
 
 The annotation processor uses `javac` internals to instrument methods. Gradle
 clients can apply the bundled Gradle plugin to add the required compiler
-exports automatically:
+exports automatically.
 
+You can check `checkrep-demo` for usage and test details.
 ```kotlin
 plugins {
     java
@@ -24,5 +25,5 @@ tasks.test {
 }
 ```
 
-You may need to publish to local before use the plugin: `.\gradlew -PpublishPluginOnly publishToMavenLocal -x javadoc`
+You may need to publish to local before use the plugin: `.\gradlew publishToMavenLocal`
 
