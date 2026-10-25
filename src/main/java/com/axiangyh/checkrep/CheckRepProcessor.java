@@ -127,7 +127,6 @@ public final class CheckRepProcessor extends AbstractProcessor {
 
     private void instrument(JCTree.JCMethodDecl method) {
         ArrayList<JCTree.JCStatement> statements = new ArrayList<>();
-        statements.add(checkRepCall);
         boolean endsWithReturn = !method.body.stats.isEmpty() && method.body.stats.last() instanceof JCTree.JCReturn;
         TreeTranslator translator = new TreeTranslator() {
             @Override
