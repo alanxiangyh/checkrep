@@ -16,13 +16,4 @@ public class ConstructorStateRecord {
             throw new IllegalStateException("value must be non-negative");
         }
     }
-
-    public void test() {
-        int a = 10;
-
-        if (a == 10) {
-            return;
-        }
-        System.out.println(1);
-    }
 }

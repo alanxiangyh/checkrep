@@ -1,5 +1,6 @@
 package com.axiangyh.checkrep.demo;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
@@ -11,6 +12,7 @@ class CheckRepDemoTest {
     @Test
     void checkRepClassIsCheckedInTestState() {
         TestStateRecord record = new TestStateRecord();
+        assertEquals(0, record.value());
         record.setValue(1);
         assertThrows(IllegalStateException.class, () -> record.setValue(-1));
 
@@ -22,6 +24,7 @@ class CheckRepDemoTest {
             e.printStackTrace();
         }
 
+        assertThrows(IllegalStateException.class, record::empty);
         assertThrows(IllegalStateException.class, record::value);
     }
 

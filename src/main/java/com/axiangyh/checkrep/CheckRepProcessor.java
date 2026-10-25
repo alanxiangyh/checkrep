@@ -126,12 +126,13 @@ public final class CheckRepProcessor extends AbstractProcessor {
     }
 
     private void instrument(JCTree.JCMethodDecl method) {
-        ArrayList<JCTree.JCStatement> statements = new ArrayList<>();
-        boolean endsWithReturn = !method.body.stats.isEmpty() && method.body.stats.last() instanceof JCTree.JCReturn;
+        List<JCTree.JCStatement> stats = method.body.stats;
+        JCTree.JCStatement firstStatement = !stats.isEmpty() ? stats.head : null;
+        JCTree.JCStatement lastStatement = !stats.isEmpty() ? stats.last() : null;
         TreeTranslator translator = new TreeTranslator() {
             @Override
             public void visitReturn(JCTree.JCReturn tree) {
-                result = maker.Block(0, List.of(checkRepCall, tree));
+                result = tree == firstStatement ? tree : maker.Block(0, List.of(checkRepCall, tree));
             }
 
             @Override
@@ -144,13 +145,15 @@ public final class CheckRepProcessor extends AbstractProcessor {
                 result = tree;
             }
         };
+        ArrayList<JCTree.JCStatement> newStats = new ArrayList<>();
+        newStats.add(checkRepCall);
         for (JCTree.JCStatement statement : method.body.stats) {
-            statements.add(translator.translate(statement));
+            newStats.add(translator.translate(statement));
         }
-        if (!endsWithReturn) {
-            statements.add(checkRepCall);
+        if (!stats.isEmpty() && !(lastStatement instanceof JCTree.JCReturn)) {
+            newStats.add(checkRepCall);
         }
-        method.body.stats = List.from(statements);
+        method.body.stats = List.from(newStats);
     }
 
     private void instrumentConstructor(JCTree.JCMethodDecl constructor) {
