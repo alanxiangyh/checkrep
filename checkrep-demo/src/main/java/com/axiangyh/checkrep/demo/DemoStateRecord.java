@@ -5,7 +5,7 @@ import com.axiangyh.checkrep.annotation.CheckRep;
 import java.util.function.Supplier;
 
 @CheckRep
-public class TestStateRecord {
+public class DemoStateRecord {
 
     private int value;
 

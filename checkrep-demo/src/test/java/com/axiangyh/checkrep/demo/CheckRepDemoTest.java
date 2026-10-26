@@ -11,7 +11,7 @@ class CheckRepDemoTest {
 
     @Test
     void checkRepClassIsCheckedInTestState() {
-        TestStateRecord record = new TestStateRecord();
+        DemoStateRecord record = new DemoStateRecord();
         assertEquals(0, record.value());
         record.setValue(1);
         assertThrows(IllegalStateException.class, () -> record.setValue(-1));

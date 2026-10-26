@@ -3,7 +3,8 @@ plugins {
     `java-library`
     `java-gradle-plugin`
     signing
-    id("com.vanniktech.maven.publish") version "0.36.0"
+    `maven-publish`
+  //  id("com.vanniktech.maven.publish") version "0.36.0"
     //id("com.gradle.plugin-publish") version "2.2.1"
 }
 
