@@ -4,6 +4,7 @@ plugins {
     `java-gradle-plugin`
     signing
     id("com.vanniktech.maven.publish") version "0.36.0"
+    //id("com.gradle.plugin-publish") version "2.2.1"
 }
 
 group = "com.axiangyh"
@@ -18,9 +19,14 @@ repositories {
 }
 
 gradlePlugin {
+    website = "https://github.com/alanxiangyh/checkrep"
+    vcsUrl = "https://github.com/alanxiangyh/checkrep.git"
     plugins {
-        create("CheckRep") {
+        create("checkRep") {
             id = "com.axiangyh.checkrep"
+            displayName = "Plugin to simplify #checkRep call in testing ADT"
+            description = "An annotation based gradle plugin to simplify #checkRep call in testing"
+            tags = listOf("testing", "unitTesting")
             implementationClass = "com.axiangyh.checkrep.CheckRepGradlePlugin"
         }
     }

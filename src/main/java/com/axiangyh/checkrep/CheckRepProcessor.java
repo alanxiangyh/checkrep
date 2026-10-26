@@ -28,7 +28,7 @@ import javax.tools.Diagnostic;
 
 @SupportedAnnotationTypes({"com.axiangyh.checkrep.annotation.CheckRep", "com.axiangyh.checkrep.annotation.VerifyRep"})
 @SupportedOptions(CheckRepProcessor.MODE_OPTION)
-public final class CheckRepProcessor extends AbstractProcessor {
+public class CheckRepProcessor extends AbstractProcessor {
 
     public static final String MODE_OPTION = "checkrep.mode";
     private TreeMaker maker;

@@ -6,9 +6,10 @@ import java.util.List;
 import org.gradle.api.GradleException;
 import org.gradle.api.Plugin;
 import org.gradle.api.Project;
+import org.gradle.api.file.ConfigurableFileCollection;
 import org.gradle.api.tasks.compile.JavaCompile;
 
-public final class CheckRepGradlePlugin implements Plugin<Project> {
+public class CheckRepGradlePlugin implements Plugin<Project> {
 
     private static final List<String> JAVAC_EXPORTS = List.of(
         "--add-exports=jdk.compiler/com.sun.tools.javac.api=ALL-UNNAMED",
@@ -20,8 +21,8 @@ public final class CheckRepGradlePlugin implements Plugin<Project> {
 
     @Override
     public void apply(Project project) {
-        project.getPluginManager().withPlugin("java", appliedPlugin -> {
-            Object pluginArtifact = project.files(getPluginArtifact());
+        project.getPluginManager().withPlugin("java", plugin -> {
+            ConfigurableFileCollection pluginArtifact = project.files(getPluginArtifact());
             project.getDependencies().add("compileOnly", pluginArtifact);
             project.getDependencies().add("runtimeOnly", pluginArtifact);
             project.getDependencies().add("annotationProcessor", pluginArtifact);
